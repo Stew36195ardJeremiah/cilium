@@ -1,0 +1,68 @@
+name: Question
+description: Ask a question about Cilium
+labels: ["kind/question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reaching out! Before submitting a question, please check:
+        - [Cilium Documentation](https://docs.cilium.io)
+        - [Cilium FAQ](https://docs.cilium.io/en/stable/operations/troubleshooting/)
+        - [Slack community](https://cilium.io/slack) for real-time help
+        - Existing [GitHub Issues](https://github.com/cilium/cilium/issues)
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: What would you like to know?
+      placeholder: Describe your question in detail.
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: |
+        Provide any relevant context that may help answer your question.
+        This could include your environment, use case, or what you have already tried.
+      placeholder: |
+        - Environment details (Kubernetes version, cloud provider, etc.)
+        - What you have already tried
+        - Relevant configuration snippets
+    validations:
+      required: false
+
+  - type: input
+    id: cilium-version
+    attributes:
+      label: Cilium Version
+      description: What version of Cilium are you using?
+      placeholder: e.g. 1.15.0
+    validations:
+      required: false
+
+  - type: dropdown
+    id: install-method
+    attributes:
+      label: Install Method
+      description: How did you install Cilium?
+      options:
+        - Helm
+        - cilium-cli
+        - Managed Kubernetes (EKS, GKE, AKS, etc.)
+        - Other
+        - Not applicable
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checklist
+      options:
+        - label: I have checked the [documentation](https://docs.cilium.io) and could not find an answer.
+          required: true
+        - label: I have searched existing [GitHub Issues](https://github.com/cilium/cilium/issues) and found no duplicate.
+          required: true
