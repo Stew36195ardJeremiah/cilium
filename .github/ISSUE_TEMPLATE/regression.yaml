@@ -1,0 +1,126 @@
+name: Regression Report
+description: Report a regression in Cilium behavior compared to a previous version
+labels: ["kind/regression", "needs-investigation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a regression! Please fill out the form below.
+        Before submitting, please search existing issues to avoid duplicates.
+
+  - type: input
+    id: version-broken
+    attributes:
+      label: Version where regression was introduced
+      description: What version of Cilium first exhibited this regression?
+      placeholder: e.g., v1.15.0
+    validations:
+      required: true
+
+  - type: input
+    id: version-working
+    attributes:
+      label: Last known working version
+      description: What was the last version of Cilium where this worked correctly?
+      placeholder: e.g., v1.14.5
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the regression
+      description: A clear and concise description of what regressed.
+      placeholder: Describe what changed in behavior between the working and broken versions.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Steps to reproduce the regression.
+      placeholder: |
+        1. Deploy Cilium with configuration...
+        2. Create a network policy...
+        3. Observe that...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: What was the expected (previously working) behavior?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual behavior
+      description: What is the current (broken) behavior?
+    validations:
+      required: true
+
+  - type: input
+    id: kubernetes-version
+    attributes:
+      label: Kubernetes version
+      description: Output of `kubectl version`
+      placeholder: e.g., v1.28.0
+    validations:
+      required: false
+
+  - type: dropdown
+    id: datapath
+    attributes:
+      label: Datapath
+      description: Which datapath mode are you using?
+      options:
+        - vxlan
+        - geneve
+        - native routing
+        - unknown
+    validations:
+      required: false
+
+  - type: textarea
+    id: cilium-config
+    attributes:
+      label: Cilium configuration
+      description: Output of `cilium config view` or relevant Helm values
+      render: shell
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: Please copy and paste any relevant log output from `cilium-agent` or `cilium-operator`.
+      render: shell
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: |
+        Add any other context about the regression here. For example:
+        - Links to related PRs or commits that may have introduced the regression
+        - Bisection results
+        - Workarounds you have found
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Confirmation
+      options:
+        - label: I have searched existing issues and this is not a duplicate
+          required: true
+        - label: I have confirmed this is a regression (worked in a previous version)
+          required: true
