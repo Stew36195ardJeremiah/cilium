@@ -1,0 +1,117 @@
+name: Security Vulnerability Report
+description: Report a security vulnerability in Cilium (please read the security policy first)
+labels: ["kind/security"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Security Vulnerability Report
+
+        **⚠️ IMPORTANT: If this is a sensitive security vulnerability, please do NOT file a public issue.**
+        Instead, please follow our [Security Disclosure Process](https://github.com/cilium/cilium/blob/main/SECURITY.md)
+        and report it privately via security@cilium.io.
+
+        This form is for non-sensitive security issues or hardening suggestions.
+
+  - type: checkboxes
+    id: acknowledgement
+    attributes:
+      label: Security Policy Acknowledgement
+      description: Please confirm you have read the security policy.
+      options:
+        - label: I have read the [Cilium Security Policy](https://github.com/cilium/cilium/blob/main/SECURITY.md) and this issue is appropriate for public disclosure.
+          required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: What is the estimated severity of this vulnerability?
+      options:
+        - "Low"
+        - "Medium"
+        - "High"
+        - "Critical"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Affected Component
+      description: Which component is affected?
+      options:
+        - "cilium-agent"
+        - "cilium-operator"
+        - "cilium-cli"
+        - "Hubble"
+        - "eBPF datapath"
+        - "Network Policy"
+        - "Identity Management"
+        - "API Server"
+        - "Other"
+      multiple: true
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Vulnerability Description
+      description: Provide a clear and concise description of the security issue.
+      placeholder: Describe the vulnerability, including what could be exploited and the potential impact.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: Provide detailed steps to reproduce the vulnerability.
+      placeholder: |
+        1. Deploy Cilium with configuration...
+        2. Execute the following command...
+        3. Observe the behavior...
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact
+      description: Describe the potential impact if this vulnerability is exploited.
+      placeholder: e.g., unauthorized network access, privilege escalation, data exfiltration...
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Provide details about the environment where the issue was found.
+      value: |
+        - Cilium version:
+        - Kubernetes version:
+        - Cloud provider / bare metal:
+        - Kernel version:
+        - Cilium configuration flags:
+    validations:
+      required: true
+
+  - type: textarea
+    id: mitigation
+    attributes:
+      label: Suggested Mitigation
+      description: If you have a suggested fix or mitigation, please describe it here.
+      placeholder: Optional - describe any workarounds or fixes you are aware of.
+    validations:
+      required: false
+
+  - type: textarea
+    id: references
+    attributes:
+      label: References
+      description: Any relevant CVEs, advisories, or related issues.
+      placeholder: e.g., CVE-XXXX-XXXXX, related upstream issues, etc.
+    validations:
+      required: false
